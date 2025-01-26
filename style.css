@@ -18,3 +18,72 @@ button {
     cursor: pointer;
     font-size: 20px;
 }
+
+/* Animated Gradient Background */
+body {
+    background: linear-gradient(45deg, #ff00ff, #0000ff, #00ffff);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Keyframes for Gradient Animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glowing Text Effect */
+.glowing-text {
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+/* Glassmorphism Effect for Cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    margin: 20px;
+    max-width: 400px;
+}
+
+/* Glowing Button */
+.glowing-button {
+    background: transparent;
+    border: 2px solid #ff00ff;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.glowing-button::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 110%;
+    height: 110%;
+    background: linear-gradient(45deg, #ff00ff, #0000ff, #00ffff);
+    z-index: -1;
+    transition: 0.5s ease;
+    filter: blur(10px);
+}
+
+.glowing-button:hover::before {
+    filter: blur(20px);
+}
