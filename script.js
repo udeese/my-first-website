@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     closeBtn.addEventListener("click", function () {
-        modal.style.display = "none";
+        modal.style.display = "inline-block";
     });
 
     window.addEventListener("click", function (event) {
