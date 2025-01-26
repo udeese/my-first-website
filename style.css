@@ -1,33 +1,15 @@
+/* General Styles */
 body {
     font-family: fantasy;
     text-align: center;
     margin: 50px;
-    background-color: darkorchid;
-}
-
-h1 {
-    color: rgb(21, 3, 46);
-    font-size: 50px;
-}
-
-button {
-    background-color: rgb(62, 3, 110);
-    color: rgb(233, 224, 231);
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-/* Animated Gradient Background */
-body {
     background: linear-gradient(45deg, #ff00ff, #0000ff, #00ffff);
     background-size: 400% 400%;
     animation: gradientAnimation 10s ease infinite;
-    font-family: Arial, sans-serif;
     color: white;
     margin: 0;
     padding: 0;
+    cursor: url('spaceship-cursor.png'), auto;
 }
 
 /* Keyframes for Gradient Animation */
@@ -44,7 +26,7 @@ body {
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
 }
 
-/* Glassmorphism Effect for Cards */
+/* Glassmorphism Card */
 .glass-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -52,18 +34,9 @@ body {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px;
-    margin: 20px;
-    max-width: 400px;
-}
-
-.glass-card {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    margin:auto;
+    margin: 20px auto;
     width: 50%;
+    text-align: center;
 }
 
 /* Glowing Button */
@@ -109,10 +82,10 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
-  }
-  
-  /* Modal Content */
-  .modal-content {
+}
+
+/* Modal Content */
+.modal-content {
     background: linear-gradient(135deg, #8a2be2, #4b0082);
     color: white;
     padding: 20px;
@@ -121,17 +94,44 @@ body {
     box-shadow: 0px 0px 15px rgba(138, 43, 226, 0.7);
     width: 300px;
     margin: 15% auto;
-  }
-  
-  /* Close Button */
-  .close {
+}
+
+/* Close Button */
+.close {
     color: white;
     float: right;
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .close:hover {
+}
+
+.close:hover {
     color: #ff00ff;
-  }
+}
+
+/* Button Bounce on Hover */
+.glowing-button:hover {
+    animation: bounce 0.3s ease-in-out;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+/* Custom Space-Themed Cursor */
+body {
+    cursor: url('spaceship-cursor.png'), auto;
+}
+
+/* Cursor Ripple Effect */
+body:active {
+    animation: ripple 0.5s ease-out;
+}
+
+@keyframes ripple {
+    0% { box-shadow: 0 0 10px #ff00ff; }
+    50% { box-shadow: 0 0 20px #ff00ff; }
+    100% { box-shadow: 0 0 10px #ff00ff; }
+}
