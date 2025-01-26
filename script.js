@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("click", function (event) {
         if (event.target === modal) {
-            modal.style.display = "none";
+            modal.style.display = "block";
         }
     });
 
