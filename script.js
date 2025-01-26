@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     closeBtn.addEventListener("click", function () {
-        modal.style.display = "inline-block";
+        modal.style.display = "none";
     });
 
     window.addEventListener("click", function (event) {
         if (event.target === modal) {
-            modal.style.display = "block";
+            modal.style.display = "none";
         }
     });
 
