@@ -5,7 +5,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    min-height: 100vh;
+    padding-top: 5vh;
     margin: 0;
     padding: 0;
     color: white;
@@ -15,6 +16,13 @@ body {
     background-size: 400% 400%;
     animation: gradientAnimation 10s infinite ease-in-out;
     cursor: url('spaceship-cursor.png'), auto;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Keyframes for Gradient Animation */
