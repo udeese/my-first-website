@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     let modal = document.getElementById("customModal");
     let closeBtn = document.querySelector(".close");
+    let button = document.getElementById("magicButton");
   
-    document.getElementById("myButton").addEventListener("click", function () {
+    document.getElementById("magicButton").addEventListener("click", function () {
       modal.style.display = "block";
     });
   
