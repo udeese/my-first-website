@@ -28,5 +28,95 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             cursor.remove();
         }, 500);
+    });// Background Canvas
+    const canvas = document.getElementById("backgroundCanvas");
+    const ctx = canvas.getContext("2d");
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    let particles = [];
+    
+    // Particle Effect
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = Math.random() * 2 - 1;
+            this.speedY = Math.random() * 2 - 1;
+            this.color = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+            if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+        }
+        
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    
+    // Generate Particles
+    for (let i = 0; i < 150; i++) {
+        particles.push(new Particle());
+    }
+    
+    // Animate Background
+    function animateBackground() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        requestAnimationFrame(animateBackground);
+    }
+    animateBackground();
+    
+    // Spaceship Cursor & Trail Effect
+    const cursor = document.createElement("div");
+    cursor.classList.add("cursor");
+    document.body.appendChild(cursor);
+    
+    window.addEventListener("mousemove", (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+    
+        const trail = document.createElement("div");
+        trail.classList.add("trail");
+        trail.style.left = `${e.clientX}px`;
+        trail.style.top = `${e.clientY}px`;
+        
+        const colors = ["rgba(0, 255, 255, 0.8)", "rgba(255, 0, 255, 0.8)", "rgba(255, 255, 0, 0.8)"];
+        trail.style.background = colors[Math.floor(Math.random() * colors.length)];
+        trail.style.boxShadow = `0 0 5px 2px ${trail.style.background}`;
+    
+        document.body.appendChild(trail);
+    
+        setTimeout(() => {
+            trail.remove();
+        }, 300);
+    });
+    
+    // Click Ripple Effect
+    window.addEventListener("click", (e) => {
+        const ripple = document.createElement("div");
+        ripple.style.position = "absolute";
+        ripple.style.left = `${e.clientX - 15}px`;
+        ripple.style.top = `${e.clientY - 15}px`;
+        ripple.style.width = "30px";
+        ripple.style.height = "30px";
+        ripple.style.borderRadius = "50%";
+        ripple.style.background = "rgba(255, 255, 255, 0.4)";
+        ripple.style.boxShadow = "0 0 10px 5px rgba(255, 255, 255, 0.4)";
+        ripple.style.animation = "fadeOut 0.6s ease-out forwards";
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
     });
 });
