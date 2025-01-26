@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Modal Functionality
     let modal = document.getElementById("customModal");
     let closeBtn = document.querySelector(".close");
     let button = document.getElementById("magicButton");
@@ -12,32 +13,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     window.addEventListener("click", function (event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.style.display = "none";
         }
     });
 
-    // Spaceship Cursor Effects
-    document.addEventListener("mousemove", function (e) {
-        let cursor = document.createElement("div");
-        cursor.classList.add("cursor-trail");
-        cursor.style.left = `${e.pageX}px`;
-        cursor.style.top = `${e.pageY}px`;
-        document.body.appendChild(cursor);
-
-        setTimeout(() => {
-            cursor.remove();
-        }, 500);
-    });// Background Canvas
+    // Background Canvas
     const canvas = document.getElementById("backgroundCanvas");
     const ctx = canvas.getContext("2d");
-    
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
+
     let particles = [];
-    
-    // Particle Effect
+
     class Particle {
         constructor() {
             this.x = Math.random() * canvas.width;
@@ -47,14 +36,14 @@ document.addEventListener("DOMContentLoaded", function () {
             this.speedY = Math.random() * 2 - 1;
             this.color = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
         }
-        
+
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
             if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
             if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
         }
-        
+
         draw() {
             ctx.fillStyle = this.color;
             ctx.beginPath();
@@ -62,13 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.fill();
         }
     }
-    
-    // Generate Particles
+
     for (let i = 0; i < 150; i++) {
         particles.push(new Particle());
     }
-    
-    // Animate Background
+
     function animateBackground() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach(particle => {
@@ -78,45 +65,21 @@ document.addEventListener("DOMContentLoaded", function () {
         requestAnimationFrame(animateBackground);
     }
     animateBackground();
-    
-    // Spaceship Cursor & Trail Effect
-    const cursor = document.createElement("div");
-    cursor.classList.add("cursor");
-    document.body.appendChild(cursor);
-    
+
+    // Custom Cursor Effect
     window.addEventListener("mousemove", (e) => {
+        const cursor = document.querySelector(".cursor");
         cursor.style.left = `${e.clientX}px`;
         cursor.style.top = `${e.clientY}px`;
-    
+
         const trail = document.createElement("div");
         trail.classList.add("trail");
         trail.style.left = `${e.clientX}px`;
         trail.style.top = `${e.clientY}px`;
-        
-        const colors = ["rgba(0, 255, 255, 0.8)", "rgba(255, 0, 255, 0.8)", "rgba(255, 255, 0, 0.8)"];
-        trail.style.background = colors[Math.floor(Math.random() * colors.length)];
-        trail.style.boxShadow = `0 0 5px 2px ${trail.style.background}`;
-    
         document.body.appendChild(trail);
-    
+
         setTimeout(() => {
             trail.remove();
         }, 300);
-    });
-    
-    // Click Ripple Effect
-    window.addEventListener("click", (e) => {
-        const ripple = document.createElement("div");
-        ripple.style.position = "absolute";
-        ripple.style.left = `${e.clientX - 15}px`;
-        ripple.style.top = `${e.clientY - 15}px`;
-        ripple.style.width = "30px";
-        ripple.style.height = "30px";
-        ripple.style.borderRadius = "50%";
-        ripple.style.background = "rgba(255, 255, 255, 0.4)";
-        ripple.style.boxShadow = "0 0 10px 5px rgba(255, 255, 255, 0.4)";
-        ripple.style.animation = "fadeOut 0.6s ease-out forwards";
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
     });
 });

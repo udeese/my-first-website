@@ -2,13 +2,13 @@
 body {
     font-family: fantasy;
     text-align: center;
-    margin: 50px;
-    background: linear-gradient(45deg, #ff00ff, #0000ff, #00ffff);
-    background-size: 400% 400%;
-    animation: gradientAnimation 10s ease infinite;
-    color: white;
     margin: 0;
     padding: 0;
+    color: white;
+    overflow: hidden;
+    background: linear-gradient(45deg, #ff00ff, #0000ff, #00ffff);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s infinite ease-in-out;
     cursor: url('spaceship-cursor.png'), auto;
 }
 
@@ -54,24 +54,17 @@ body {
     overflow: hidden;
 }
 
-.glowing-button::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: 110%;
-    height: 110%;
-    background: linear-gradient(45deg, #ff00ff, #0000ff, #00ffff);
-    z-index: -1;
-    transition: 0.5s ease;
-    filter: blur(10px);
+.glowing-button:hover {
+    animation: bounce 0.3s ease-in-out;
 }
 
-.glowing-button:hover::before {
-    filter: blur(20px);
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
 }
 
-/* Modal Background */
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -109,75 +102,6 @@ body {
     color: #ff00ff;
 }
 
-/* Button Bounce on Hover */
-.glowing-button:hover {
-    animation: bounce 0.3s ease-in-out;
-}
-
-@keyframes bounce {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0); }
-}
-
-/* Custom Space-Themed Cursor */
-body {
-    cursor: url('spaceship-cursor.png'), auto;
-}
-
-/* Cursor Ripple Effect */
-body:active {
-    animation: ripple 0.5s ease-out;
-}
-
-@keyframes ripple {
-    0% { box-shadow: 0 0 10px #ff00ff; }
-    50% { box-shadow: 0 0 20px #ff00ff; }
-    100% { box-shadow: 0 0 10px #ff00ff; }
-}
-/* General Styles */
-body {
-    margin: 0;
-    overflow: hidden;
-    background: radial-gradient(circle at center, #1a1a2e, #16213e);
-    color: white;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-}
-
-/* Content Styling */
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-
-/* Buttons and Links Bounce Effect */
-@keyframes gravity-bounce {
-    0% { transform: translateY(0); }
-    40% { transform: translateY(-4px); }
-    70% { transform: translateY(-2px); }
-    100% { transform: translateY(0); }
-}
-
-.button, .link {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid white;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-}
-
-.button:hover, .link:hover {
-    animation: gravity-bounce 0.6s cubic-bezier(0.3, 0.8, 0.4, 1);
-    background: rgba(255, 255, 255, 0.2);
-}
-
 /* Custom Cursor */
 .cursor {
     position: absolute;
@@ -189,19 +113,16 @@ body {
     z-index: 3;
 }
 
-/* Trail effect */
+/* Trail Effect */
 .trail {
     position: absolute;
     width: 5px;
     height: 5px;
-    background: rgba(255, 0, 255, 0.8);
     border-radius: 50%;
     pointer-events: none;
-    box-shadow: 0 0 5px 2px rgba(255, 0, 255, 0.8);
     animation: fadeOut 0.5s ease-out forwards;
 }
 
-/* Trail fade-out effect */
 @keyframes fadeOut {
     from { opacity: 1; transform: scale(1); }
     to { opacity: 0; transform: scale(0.5); }
