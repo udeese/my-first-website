@@ -183,7 +183,7 @@ body {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: url('spaceship.png') no-repeat center center;
+    background: url('spaceship-cursor.png') no-repeat center center;
     background-size: contain;
     pointer-events: none;
     z-index: 3;
