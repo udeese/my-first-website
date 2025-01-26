@@ -5,7 +5,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50vh;
+    min-height: 200vh;
     padding-top: 5vh;
     margin: 0;
     padding: 0;
@@ -22,7 +22,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    height: 50vh;
+    height: 200vh;
 }
 
 /* Keyframes for Gradient Animation */
